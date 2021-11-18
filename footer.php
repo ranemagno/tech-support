@@ -2,7 +2,7 @@
 <footer class="footer">
   <div class="footer-block">
     <ul class="footer-list legal-block">
-      <li><img src="<?php bloginfo('stylesheet_directory'); ?>/images/youthlineLogo.png" alt="Youthline Logo" id="logoFooter"></li>
+      <li><img src="<?php bloginfo('stylesheet_directory'); ?>/img/tech_support_full.svg" alt="Youthline Logo" id="logoFooter" width="200"></li>
       <li id="copyright">© COPYRIGHT 2021. ALL RIGHTS RESERVED.</li>
       <li>Terms and Services | Privacy Policy</li>
     </ul>

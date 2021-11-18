@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title><?php bloginfo('Tech Support');?></title>
+  <link rel="icon" href="img/tech_support_icon.svg" type="image/x-icon">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,35 +44,42 @@
 
 // Desktop Scroll Effects
 var prevScrollPos = window.pageYOffset;
-  window.onscroll = function() {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollPos > currentScrollPos) {
-      document.querySelector('.navbar').style.top = "0";
-      console.log();
-    } else {
-      document.querySelector('.navbar').style.top = "-15vh";
-    }
-    prevScrollPos = currentScrollPos;
-  }
-
-
-// Mobile Scroll Effects
 var menuBtn = document.querySelector('#menuIcon');
 var closeBtn = document.querySelector('#closeIcon');
 var mobileNavbar = document.querySelector('.mobile-navbar-nav');
 
-var mobilePrevScrollPos = window.pageYOffset;
   window.onscroll = function() {
-    var mobileCurrentScrollPos = window.pageYOffset;
-    if (mobilePrevScrollPos > mobileCurrentScrollPos) {
-      document.querySelector('.mobile-nav').style.top = "0";
+
+    // gets window height
+    var currentScrollPos = window.pageYOffset;
+    var win = window,
+    doc = document,
+    docElem = doc.documentElement,
+    body = doc.getElementsByTagName('body')[0],
+    x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+    y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+
+    console.log(x, y);
+
+    if (x <= 800) {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollPos > currentScrollPos) {
+        document.querySelector('.mobile-nav').style.top = "0";
+      } else {
+        document.querySelector('.mobile-nav').style.top = "-15vh";
+        menuBtn.style.display = 'block';
+        closeBtn.style.display = 'none';
+        mobileNavbar.style.right = '-60vw';
+      }
     } else {
-      document.querySelector('.mobile-nav').style.top = "-15vh";
-      menuBtn.style.display = 'block';
-      closeBtn.style.display = 'none';
-      mobileNavbar.style.right = '-60vw';
-    }
-    mobilePrevScrollPos = mobileCurrentScrollPos;
+        if (prevScrollPos > currentScrollPos) {
+          document.querySelector('.navbar').style.top = "0";
+          console.log('scrolling');
+        } else {
+          document.querySelector('.navbar').style.top = "-15vh";
+        }
+      }
+    prevScrollPos = currentScrollPos;
   }
 
   menuBtn.addEventListener('click', () => {
@@ -87,6 +95,44 @@ var mobilePrevScrollPos = window.pageYOffset;
     closeBtn.style.display = 'none';
     mobileNavbar.style.right = '-60vw';
   })
+
+
+
+
+
+
+// Mobile Scroll Effects
+// var menuBtn = document.querySelector('#menuIcon');
+// var closeBtn = document.querySelector('#closeIcon');
+// var mobileNavbar = document.querySelector('.mobile-navbar-nav');
+//
+// var mobilePrevScrollPos = window.pageYOffset;
+//   window.onscroll = function() {
+//     var mobileCurrentScrollPos = window.pageYOffset;
+//     if (mobilePrevScrollPos > mobileCurrentScrollPos) {
+//       document.querySelector('.mobile-nav').style.top = "0";
+//     } else {
+//       document.querySelector('.mobile-nav').style.top = "-15vh";
+//       menuBtn.style.display = 'block';
+//       closeBtn.style.display = 'none';
+//       mobileNavbar.style.right = '-60vw';
+//     }
+//     mobilePrevScrollPos = mobileCurrentScrollPos;
+//   }
+//
+//   menuBtn.addEventListener('click', () => {
+//     console.log('clicked');
+//     console.log(mobileNavbar);
+//     menuBtn.style.display = 'none';
+//     closeBtn.style.display = 'block';
+//     mobileNavbar.style.right = '0';
+//   });
+//
+//   closeBtn.addEventListener('click', () => {
+//     menuBtn.style.display = 'block';
+//     closeBtn.style.display = 'none';
+//     mobileNavbar.style.right = '-60vw';
+//   })
 
 </script>
 
