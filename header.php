@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title><?php bloginfo('Tech Support');?></title>
-  <link rel="icon" href="img/tech_support_icon.svg" type="image/x-icon">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +19,10 @@
 
 <nav class="navbar">
   <div class="navbar-logo">
-    <img src="<?php bloginfo('stylesheet_directory'); ?>/img/tech_support_full.svg" alt="Tech Support Logo" id="logo">
+    <a href="<?php echo get_home_url(); ?>">
+    <img src="<?php echo get_theme_mod("logo_nav_setting"); ?>" id="logo">
+    </a>
+
   </div>
     <?php $menu_args = ['theme_location' => 'primary', 'menu_class' => "navbar-nav"]; ?>
     <?php wp_nav_menu($menu_args); ?>
@@ -39,14 +41,15 @@
 </nav>
 
 
-<!-- Scroll and reveal navigation -->
 <script type="text/javascript">
 
-// Desktop Scroll Effects
+// Scroll and Reveal Navigation
+
 var prevScrollPos = window.pageYOffset;
 var menuBtn = document.querySelector('#menuIcon');
 var closeBtn = document.querySelector('#closeIcon');
 var mobileNavbar = document.querySelector('.mobile-navbar-nav');
+var navbar = document.querySelector('.navbar');
 
   window.onscroll = function() {
 
@@ -59,9 +62,15 @@ var mobileNavbar = document.querySelector('.mobile-navbar-nav');
     x = win.innerWidth || docElem.clientWidth || body.clientWidth,
     y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
 
-    console.log(x, y);
+    // console.log(x, y);
 
-    if (x <= 800) {
+    if (currentScrollPos > 100) {
+      navbar.style.backgroundColor = 'var(--bg-color)';
+    } else {
+      navbar.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+    }
+
+    if (x <= 900) {
       var currentScrollPos = window.pageYOffset;
       if (prevScrollPos > currentScrollPos) {
         document.querySelector('.mobile-nav').style.top = "0";
@@ -74,7 +83,6 @@ var mobileNavbar = document.querySelector('.mobile-navbar-nav');
     } else {
         if (prevScrollPos > currentScrollPos) {
           document.querySelector('.navbar').style.top = "0";
-          console.log('scrolling');
         } else {
           document.querySelector('.navbar').style.top = "-15vh";
         }
@@ -83,8 +91,6 @@ var mobileNavbar = document.querySelector('.mobile-navbar-nav');
   }
 
   menuBtn.addEventListener('click', () => {
-    console.log('clicked');
-    console.log(mobileNavbar);
     menuBtn.style.display = 'none';
     closeBtn.style.display = 'block';
     mobileNavbar.style.right = '0';
@@ -95,44 +101,6 @@ var mobileNavbar = document.querySelector('.mobile-navbar-nav');
     closeBtn.style.display = 'none';
     mobileNavbar.style.right = '-60vw';
   })
-
-
-
-
-
-
-// Mobile Scroll Effects
-// var menuBtn = document.querySelector('#menuIcon');
-// var closeBtn = document.querySelector('#closeIcon');
-// var mobileNavbar = document.querySelector('.mobile-navbar-nav');
-//
-// var mobilePrevScrollPos = window.pageYOffset;
-//   window.onscroll = function() {
-//     var mobileCurrentScrollPos = window.pageYOffset;
-//     if (mobilePrevScrollPos > mobileCurrentScrollPos) {
-//       document.querySelector('.mobile-nav').style.top = "0";
-//     } else {
-//       document.querySelector('.mobile-nav').style.top = "-15vh";
-//       menuBtn.style.display = 'block';
-//       closeBtn.style.display = 'none';
-//       mobileNavbar.style.right = '-60vw';
-//     }
-//     mobilePrevScrollPos = mobileCurrentScrollPos;
-//   }
-//
-//   menuBtn.addEventListener('click', () => {
-//     console.log('clicked');
-//     console.log(mobileNavbar);
-//     menuBtn.style.display = 'none';
-//     closeBtn.style.display = 'block';
-//     mobileNavbar.style.right = '0';
-//   });
-//
-//   closeBtn.addEventListener('click', () => {
-//     menuBtn.style.display = 'block';
-//     closeBtn.style.display = 'none';
-//     mobileNavbar.style.right = '-60vw';
-//   })
 
 </script>
 

@@ -26,24 +26,28 @@ Tags: minimal, cool, bold, bright
 
 :root {
     --primary-font: 'Montserrat', sans-serif;
-    --primary-blue: #33CCCC;
-    --white: rgb(246, 246, 246);
+    --primary-color: #33CCCC;
+    --bg-color: rgb(246, 246, 246);
+    --text-color: black;
 }
 
 body {
     width: 100%;
-    position: absolute;
-    top: 0;
+    position: relative;
     font-family: var(--primary-font);
-    background-color: var(--white);
+    background-color: var(--bg-color);
+    color: var(--text-color)
 }
 section {
-  margin-bottom: 10vw;
+  margin-top: 13vh;
 }
-section:last-of-type {
-  margin-bottom: 5vw
+h1, h2, h3, h4,
+ul, li {
+  color: var(--text-color);
 }
-
+input, textarea, select {
+  border-color: var(--primary-color) !important;
+}
 /* Customize Bar */
 #wpadminbar {
   display: none;
@@ -57,9 +61,10 @@ section:last-of-type {
   width: 100%;
   height: 15vh;
   transition: .5s ease-in-out;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 999;
 }
 .navbar-logo {
-  /* background-color: green; */
   width: 30%;
 }
 #logo {
@@ -69,16 +74,19 @@ section:last-of-type {
 #menuIcon {
   display: none;
 }
-.navbar-nav {
-  width: 90%
+body > nav.navbar > div.menu-custom-menu-container {
+  width: 90%;
 }
-.navbar-nav ul {
+#menu-custom-menu {
   list-style: none;
   width: 100%;
   height: 15vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: right;
   align-items: center;
+}
+.navbar-nav .menu-item {
+  margin-right: 3rem;
 }
 a {
   cursor: pointer;
@@ -95,8 +103,6 @@ a {
   width: 100%;
   display: flex;
   flex-wrap: wrap-reverse;
-  margin-top: 15vh;
-  height: 70vh;
   justify-content: center;
 }
 .landing-left {
@@ -115,10 +121,14 @@ a {
   font-weight: 700;
   margin-bottom: 10%;
 }
+.landing-left-content p {
+  margin-top: -5%;
+  font-size: 1.5rem;
+}
 #landingBtn {
   padding: 1rem 3rem;
-  background-color: var(--primary-blue);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.5rem;
@@ -146,7 +156,6 @@ a {
 /* Services */
 .services {
   width: 100%;
-  height: 100vh;
 }
 .services-header {
   height: 25%;
@@ -165,6 +174,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 13vh;
 }
 .block {
   height: 500px;
@@ -180,6 +190,7 @@ a {
 }
 .block-icon img {
   width: 35%;
+  height: 100%;
 }
 .block-title {
   width: 100%;
@@ -208,8 +219,8 @@ a {
 }
 #serviceBtn {
   padding: 1rem 3rem;
-  background-color: var(--primary-blue);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.5rem;
@@ -222,22 +233,18 @@ a {
 /* Contact and Form */
 .contacts {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-wrap: wrap;
 }
 .contact-left {
   width: 50%;
-  /* background-color: aqua; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 }
 .contact-description {
   width: 70%;
   height: 80%;
-  /* background-color: yellow; */
-  margin-left: 10%;
 }
 .contact-title {
   font-size: 4.3rem;
@@ -281,16 +288,30 @@ a {
   font-weight: 300;
   font-size: 1.1rem;
 }
+.opt-map {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -7%;
+}
+.opt-map p {
+  width: 100%;
+  margin: 4% 0 0 0;
+}
+.opt-map p:first-of-type {
+  margin: 0 0 4% 0;
+}
 .contact-right {
   width: 50%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
 }
 .contact-form {
-  border: 1px solid var(--primary-blue);
+  border: 1px solid var(--primary-color);
   border-radius: 25px;
   width: 70%;
-  display: inline-block;
-  margin-left: 10%;
 }
+
 /* Contact Form 7 Styling */
 #wpcf7-f5-o1 > form {
   width: 100%;
@@ -319,7 +340,7 @@ a {
   height: 15vh;
   border-radius: 15px;
   border: 1px solid black;
-  padding: 10px 10px;
+  padding: 1vw 1vw;
   margin-top: 2%;
   font-weight: 400;
 }
@@ -340,7 +361,7 @@ a {
   width: 100%;
   border: 1px solid black;
   border-style: none none solid none;
-  margin-top: 3%;
+  margin: 3% 0;
   padding: 3% 3%;
   font-size: 1.3rem;
 }
@@ -349,29 +370,358 @@ a {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 55% 55%;
-  background-color: var(--primary-blue);
+  background-color: var(--primary-color);
   padding: 40px;
   border-radius: 50%;
   border: none;
   align-self: center;
+  cursor: pointer;
 }
 /* Error Msgs */
 #wpcf7-f5-o1 > form > p > label > span > span {
   margin: 0 0 5% 0;
 }
+#wpcf7-f5-o1 > form > div.wpcf7-response-output {
+  border: 2px solid red;
+  border-style: none none solid none;
+}
 /* Contact and Form */
 
+/* Footer */
+.footer {
+  width: 100%;
+  margin-top: 13vh;
+  padding: 5vh 0;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--primary-color);
+}
+.footer-block {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.block-contact {
+  text-align: left;
+}
+.footer-list {
+  list-style: none;
+  width: 80%;
+  line-height: 2rem;
+  text-align: center;
+}
+.footer-list h2 {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-size: .7rem;
+  font-weight: 800;
+}
+.list-legal {
+  text-align: right;
+}
+.list-contact {
+  text-align: left;
+}
+.footer-contact {
+  display: flex;
+}
+.footer-contact img {
+  width: 5%;
+  margin-right: 5%;
+}
+/* Footer */
 
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* Booking Page */
+.booking-page-container {
+  margin-top: 15vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.booking-content {
+  width: 90%;
+}
+.booking-content p {
+  margin: 1rem 0;
+}
+.booking-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+#fbuilder .ui-datepicker-inline{
+  max-width: none !important
+}
+#fbuilder input[type=text],
+#fbuilder textarea,
+#fbuilder select {
+border: 1px solid var(--primary-color);
+padding: .5rem 1rem;
+border-radius: 5px;
+margin: .5rem 0;
+}
+#fbuilder, #fbuilder label,
+#fbuilder span {
+  /* the whole block itself */
+}
+#fbuilder .ahb_list {
+  margin: 5% 0 5% 0;
+}
+#fbuilder .ahb_list .ahb_list_time {
+  border: 2px solid var(--primary-color);
+  border-style: none none solid none;
+  font-weight: 400;
+  padding: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#fbuilder .ahb_list .ahb_list_service {
+  border: 2px solid var(--primary-color);
+  border-style: none none solid none;
+  /* background: var(--primary-color); */
+  font-weight: 400;
+  padding: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#fbuilder .ahb_list a {
+  border:0px;
+  padding:10px;
+  font-weight: 400;
+  color: #e31a1a;
+  display:inline-block
+}
+#fbuilder .ui-datepicker-calendar .ui-state-active {
+  text-align: center !important;
+  width: 50% !important;
+  margin-left: 25%;
+  color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
+}
+#field_1-1 > div.dfield.fapp > div.slotsCalendar.slotsCalendarfieldname1_1 > div > span {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+#fbuilder .ui-datepicker-header {
+  margin: 1rem 0 1rem 2rem !important;
+}
+#field_1-1 > div.dfield.fapp > div.slotsCalendar.slotsCalendarfieldname1_1 > div > span {
+  display: none !important;
+}
+#fbuilder .slots div {
+  border: 0px !important;
+}
+#fbuilder .slots div a {
+  background: var(--primary-color) !important;
+  color: var(--bg-color);
+}
+#fbuilder .slots {
+  margin-left: 5%;
+}
+.captcha {
+  margin-top: 2rem !important;
+}
+#captchaimg_1 {
+  margin-bottom: 2rem !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* Services Page */
+.all-services {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 13vh;
+}
+.service-block {
+  height: 500px;
+  width: 25%;
+  margin: 2% 1%;
+}
+.service-block-icon {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.service-block-icon img {
+  width: 35%;
+  height: 100%;
+}
+.service-block-title {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+.service-block-paragraph {
+  width: 100%;
+  text-align: center;
+}
+.service-block-paragraph p {
+  margin: 0 5%;
+  font-size: 1.2rem;
+  font-family: var(--primary-font);
+}
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* About Us Page */
+.positive-reasons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.reason-block {
+  width: 40%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reason-block-content {
+  width: 95%;
+  height: 80%;
+  display: flex;
+}
+.reason-block-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reason-block-icon img {
+  width: 100%;
+  height: 100%;
+}
+.reason-block-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+}
+.reason-block-text p {
+  margin: 0 5%;
+}
+.reviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.reviews-header,
+.team-header {
+  text-align: center;
+  width: 100%;
+}
+.review-blocks,
+.team-blocks {
+  width: 100%;
+  margin-top: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.review-block {
+  width: 25%;
+  height: 500px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+}
+.review-block h3 {
+  width: 100%;
+  padding-top: 15%;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.review-block p {
+  font-size: 1.2rem;
+  margin: 0 2rem;
+  line-height: 1.8rem;
+}
+.review-block-icon {
+  width: 100%;
+  height: 20%;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.review-block-icon img {
+  width: 100%;
+  height: 100%;
+}
+.review-block:first-of-type::before {
+  content: '';
+  background-image: url('img/format_quote_blue.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  z-index: -10;
+}
+.member-block {
+  margin-top: 5vh;
+  width: 25%;
+  height: 555px;
+}
+.member-img {
+  width: 100%;
+  height: 85%;
+  border: 1px solid var(--primary-color);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.member-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1rem 0 0 .5rem;
+}
+.member-position {
+  font-size: 1.5rem;
+  margin: .5rem 0 0 .5rem;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* Responsive Design -------------------------------------------------------- */
 
 /* Laptops and Tablets */
-@media (max-width: 800px) {
-  /* body {
-    background-color: purple;
-  } */
-  .landing {
-    margin-top: 5vh;
-    height: 100vh;
-  }
+@media (max-width: 900px) {
   .landing-left {
     width: 600px;
     text-align: center;
@@ -387,42 +737,39 @@ a {
     width: 400px;
   }
   .contacts {
-    margin-top: 130vh;
-  }
-  .contact-description {
-    width: 70%;
-    height: 80%;
-    /* background-color: yellow; */
-    margin-left: 0;
   }
   .contact-form {
-    margin-left: 15%;
+    margin-top: 10%;
   }
   .contact-left {
-    width: 800px;
+    width: 100%;
   }
   .contact-right {
-    width: 800px;
+    width: 100%;
+  }
+  .contact-title {
+    font-size: 3rem;
   }
   .navbar {
     display: none;
   }
   .mobile-nav {
     position: fixed;
+    top: 0;
     display: flex;
     height: 10vh;
     width: 100%;
     transition: .5s ease-in-out;
   }
   .mobile-logo {
-    width: 50%;
+    width: 400px;
   }
   #menuIcon {
     display: block;
     position: fixed;
     width: 50px;
-    top: 4%;
-    right: 5%;
+    top: 2rem;
+    right: 2rem;
     z-index: 100;
   }
   #closeIcon {
@@ -434,13 +781,26 @@ a {
     z-index: 99;
   }
   #logo {
-    width: 100%;
-    margin: 10% 0 0 9%;
+    width: 50%;
+    position: absolute;
+    top: 2.4rem;
+    left: 2rem;
+    margin: 0;
+  }
+  #menu-custom-menu-1 {
+    list-style: none;
+    background-color: var(--bg-color);
+  }
+  #menu-custom-menu-1 > li {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 1rem 2rem 2rem 0;
+    padding-left: 1rem;
+    color: var(--primary-color);
   }
   .mobile-navbar-nav {
     display: block;
     position: fixed;
-    width: 40vw;
     top: 13vh;
     right: -60vw;
     text-align: right;
@@ -452,20 +812,70 @@ a {
     font-weight: 600;
     font-size: 1.5rem;
     list-style: none;
-    color: var(--primary-blue);
+    color: var(--primary-color);
   }
   .mobile-navbar-nav ul li {
+    list-style: none;
     margin: 1rem 3rem 1rem 0;
-    background-color: var(--white);
+    background-color: var(--bg-color);
+  }
+  .footer {
+    align-content: center;
+  }
+  .footer-block {
+    width: 100%;
+    margin: 5% 0;
+    justify-content: center;
+  }
+  .footer-contact {
+    justify-content: center;
+  }
+  .list-legal {
+    text-align: center;
+  }
+  .list-contact {
+    text-align: center;
+  }
+  .service-block {
+    width: 400px;
+  }
+  .reason-block {
+    width: 90%;
+    margin-left: 5%;
+  }
+  .review-block {
+    width: 80%;
+    height: 400px;
+  }
+  .review-block:first-of-type {
+    margin-top: 10vh;
+  }
+  .member-block {
+    width: 80%;
+    margin-top: 10vh;
   }
 }
 
+@media (max-width: 1300px) {
+  .reason-block-text p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1000px) {
+
+}
 
 /* Mobile Phones */
 @media (max-width: 450px) {
+  section {
+    margin: 0 0 5vh 0;
+  }
   #logo {
-    width: 100%;
-    margin: 10% 0 0 9%;
+    width: 80%;
+    position: absolute;
+    top: 1.3rem;
+    left: 0;
+    margin: 0;
   }
   #menuIcon {
       position: fixed;
@@ -481,10 +891,6 @@ a {
     right: 5%;
     display: none;
     z-index: 99;
-  }
-  .landing {
-    margin-top: 0;
-    height: 100vh;
   }
   .landing-left {
     align-items: start;
@@ -505,11 +911,23 @@ a {
   .mobile-navbar-nav ul li {
     margin: 1rem 2rem 1rem 0;
   }
+  .mobile-logo {
+    position: fixed;
+    width: 300px;
+    top: 0rem;
+    left: 1rem;
+    z-index: 100;
+  }
+  .contact-description {
+    margin-left: 0;
+  }
+  .section-title {
+    font-size: 3rem;
+  }
 }
 
 @media (max-height: 660px ) {
   .landing {
-    margin-top: 6vh;
   }
   .landing-left-content h1 {
     font-size: 8vw;
